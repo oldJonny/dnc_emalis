@@ -1,0 +1,11 @@
+library(igraph)
+st1 <- data.frame(c(edge$Source),c(edge$Target))
+st1_matrix <-  as.matrix(st1)
+G<-graph_from_edgelist(st1_matrix,directed = FALSE)
+C <- edge.betweenness.community(G)
+plot(C,G)
+edgs <- get.edgelist(G)
+clus <- data.frame(1:length(V(G)), C$membership)
+clus <- clus[unique(c(edgs[,1], edgs[,2])),]
+write.table(edgs, "G1.CSV", sep=",", row.names=F, col.names=F)
+write.table(edgs, "G1.csv", sep=",", row.names=F, col.names=F)
